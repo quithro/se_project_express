@@ -1,13 +1,14 @@
 const User = require("../models/user");
 const {
   BadRequestError,
-  ConflictError,
+  NotFoundError,
+  ServerError,
 } = require("../utils/errors");
 
 const createUser = (req, res) => {
   const { name, avatar } = req.body;
   User.create({ name, avatar })
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.status(201).send(user))
     .catch((err) => {
       if (err.name === "ValidationError") {
         return res
@@ -38,16 +39,16 @@ const getUser = (req, res) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
         return res
-        .status(NotFoundError)
-        .send({ message: err.message });
-      } else if (err.name === "CastError") {
+          .status(NotFoundError)
+          .send({ message: err.message });
+      } if (err.name === "CastError") {
         return res
-        .status(NotFoundError)
-        .send({ message: "Invalid Data" });
+          .status(BadRequestError)
+          .send({ message: "Invalid Data" });
       }
       return res
-      .status(ServerError)
-      .send({ message: "An error has occurred on the server." });
+        .status(ServerError)
+        .send({ message: "An error has occurred on the server." });
     });
 };
 

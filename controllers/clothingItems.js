@@ -3,7 +3,6 @@ const {
   BadRequestError,
   ServerError,
   NotFoundError,
-  ForbiddenError,
 } = require("../utils/errors");
 
 const createItem = (req, res) => {
@@ -30,7 +29,7 @@ const createItem = (req, res) => {
   });
 };
 
-const getItems = (res, req) => {
+const getItems = (req, res) => {
   ClothingItem.find({})
   then((items) => res.status(200).send(items))
   .catch((err) => {

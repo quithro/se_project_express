@@ -4,9 +4,6 @@ const ServerError = 500;
 
 module.exports = {
   BadRequestError,
-  UnauthorizedError,
-  ForbiddenError,
   NotFoundError,
-  ConflictError,
   ServerError,
 };

@@ -7,7 +7,7 @@ const {
 const createUser = (req, res) => {
   const { name, avatar } = req.body;
   User.create({ name, avatar })
-    .then((user) => res.status(201).send(user))
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === "ValidationError") {
         return res

@@ -6,9 +6,6 @@ const {
 } = require("../utils/errors");
 
 const createItem = (req, res) => {
-  console.log(req);
-  console.log(req.body);
-  console.log(req.user._id);
   const userId = req.user._id;
   const { name, weather, imageUrl } = req.body;
 
@@ -25,7 +22,7 @@ const createItem = (req, res) => {
     }
     return res
       .status(ServerError)
-      .send({ message: "An error has occurred on the server."});
+      .send({ message: "An error has occurred on the server"});
   });
 };
 
@@ -36,12 +33,12 @@ const getItems = (req, res) => {
     console.log(err);
     res
     .status(ServerError)
-    .send({ message: "An error has occurred on the server." });
+    .send({ message: "An error has occurred on the server" });
   });
 };
 
 const deleteItem = (req, res) => {
-  const{ itemId } = req.params;
+  const { itemId } = req.params;
 
   ClothingItem.findByIdAndDelete(itemId)
     .orFail()
@@ -82,7 +79,7 @@ const likeItem = (req, res) => {
 
     return res
       .status(ServerError)
-      .send({ message: "An error has occurred on the server." });
+      .send({ message: "An error has occurred on the server" });
   });
 };
 

@@ -10,6 +10,7 @@ const createUser = (req, res) => {
   User.create({ name, avatar })
     .then((user) => res.status(201).send(user))
     .catch((err) => {
+      console.log(err);
       if (err.name === "ValidationError") {
         return res
         .status(BadRequestError)
@@ -17,7 +18,7 @@ const createUser = (req, res) => {
       }
         return res
         .status(ServerError)
-        .send({ message: "An error occured on the server." });
+        .send({ message: "An error occured on the server" });
       });
 };
 
@@ -48,7 +49,7 @@ const getUser = (req, res) => {
       }
       return res
         .status(ServerError)
-        .send({ message: "An error has occurred on the server." });
+        .send({ message: "An error has occurred on the server" });
     });
 };
 

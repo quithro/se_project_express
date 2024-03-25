@@ -1,15 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const mainRouter = require("./routes/index");
+const { login, createUser } = require("./controllers/users");
 
 const app = express();
-const { PORT = 3001 } = process.env;
+//const { PORT = 3001 } = process.env;
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/wtwr_db')
-  .then(() => {
-    console.log("Connected to DB");
-  })
+  .connect('mongodb://127.0.0.1:27017/wtwr_db', (r) => {
+  //.then(() => {
+    console.log("Connected to DB", r);
+  /*})
     .catch(console.error);
 
   app.use(express.json());
@@ -23,6 +25,15 @@ mongoose
   app.use("/", mainRouter);
 
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`); */
 });
 
+app.use(cors());
+
+const routes = require("./routes/index");
+
+app.use(express.json());
+app.post("/signin", login);
+app.post("/signup", createUser);
+
+app.use(routes);

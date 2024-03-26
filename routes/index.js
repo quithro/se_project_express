@@ -7,7 +7,9 @@ router.use("/items", clothingItem);
 router.use("/users", users);
 
 router.use((req, res) => {
-  res.status(NotFoundError).send({ message: "Requested resource not found" });
+  res
+  .status(NotFoundError)
+  .send({ message: "Requested resource not found" });
 });
 
 module.exports = router;

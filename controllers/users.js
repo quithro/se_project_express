@@ -11,7 +11,7 @@ const {
 const { JWT_SECRET } = require("../utils/config");
 
 const createUser = (req, res) => {
-  const { name, avatar } = req.body;
+  const { name, avatar, email, password } = req.body;
 
   if (!password || !email) {
     return res
@@ -51,7 +51,9 @@ const createUser = (req, res) => {
     })
     .catch((err) => {
       if (err.name === "DocumentNotFound") {
-        return res.status(NotFoundError).send({ message: "Not found error"});
+        return res
+        .status(NotFoundError)
+        .send({ message: "Not found error"});
       }
       return res
         .status(ServerError)
@@ -59,7 +61,7 @@ const createUser = (req, res) => {
     });
 };
 
-const getCurrentUsers = (req, res) => {
+const getUser = (req, res) => {
   User.findById(req.user._id)
     .orFail(() => {
       const error = new Error("User Id not found");
@@ -71,7 +73,9 @@ const getCurrentUsers = (req, res) => {
     })
     .catch((err) => {
       if (err.name === "NotFoundError") {
-        return res.status(NotFoundError).send({ message: "Not found error" });
+        return res
+        .status(NotFoundError)
+        .send({ message: "Not found error" });
       }
       return res
         .status(ServerError)
@@ -131,7 +135,7 @@ const login = (req, res) => {
 
 module.exports = {
   createUser,
-  getUsers,
+  getUser,
   login,
   updateUser,
 };

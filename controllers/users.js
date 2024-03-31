@@ -129,7 +129,7 @@ const login = (req, res) => {
       }
       return res
         .status(ServerError)
-        .send({ message: "An error occurred on the server" });
+        .send({ message: "An error occurred on the server." });
     });
 };
 

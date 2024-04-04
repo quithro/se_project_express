@@ -24,7 +24,7 @@ const createUser = (req, res) => {
       if (user) {
         return res
           .status(ConflictError)
-          .send({ message: "Email already exists "});
+          .send({ message: "Email already exists"});
       }
 
       return bcrypt.hash(password, 10).then((hash) => {

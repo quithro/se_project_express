@@ -10,4 +10,4 @@ I've implemented several new technologies and techniques such as Express.js, RES
 
 ## Link
 
-Github Repo - https://github.com/quithro/se_project_express
+Github Repo - http://github.com/quithro/se_project_express

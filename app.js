@@ -4,6 +4,15 @@ const mongoose = require("mongoose");
 
 const cors = require("cors");
 
+export const allowedOrigins = [
+  "https://quithro.strangled.net",
+  "http://quithro.strangled.net",
+  "https://www.quithro.strangled.net",
+  "http://www.quithro.strangled.net",
+  "http://localhost:3000",
+];
+app.use(cors({ origin: allowedOrigins }));
+
 const app = express();
 
 const { errors } = require("celebrate");
@@ -28,7 +37,6 @@ app.listen(PORT, () => {
 mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db", (r) => {
   console.log("connected to DB", r);
 });
-app.use(cors());
 
 const routes = require("./routes/index");
 

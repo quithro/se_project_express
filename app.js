@@ -1,9 +1,7 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
 const cors = require("cors");
-app.use(cors({ origin: allowedOrigins }));
+require("dotenv").config();
 
 const app = express();
 
@@ -26,6 +24,7 @@ app.listen(PORT, () => {
   console.log("this is working");
 });
 
+mongoose.set("strictQuery", true);
 mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db", (r) => {
   console.log("connected to DB", r);
 });
@@ -34,6 +33,7 @@ const routes = require("./routes/index");
 
 app.use(express.json());
 app.use(requestLogger);
+app.use(cors());
 
 app.get("/crash-test", () => {
   setTimeout(() => {

@@ -3,14 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const cors = require("cors");
-
-export const allowedOrigins = [
-  "https://quithro.strangled.net",
-  "http://quithro.strangled.net",
-  "https://www.quithro.strangled.net",
-  "http://www.quithro.strangled.net",
-  "http://localhost:3000",
-];
 app.use(cors({ origin: allowedOrigins }));
 
 const app = express();

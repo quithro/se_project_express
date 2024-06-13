@@ -41,7 +41,7 @@ const createUser = (req, res, next) => {
       .catch(next);
 };
 
-const getUser = (req, res, next) => {
+const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(() => new NotFoundError("User not found"))
       .then((user) => {
@@ -90,9 +90,10 @@ const login = (req, res, next) => {
     });
 };
 
+
 module.exports = {
   createUser,
-  getUser,
+  getCurrentUser,
   login,
   updateUser,
 };

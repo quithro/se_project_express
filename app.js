@@ -37,6 +37,8 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(cors());
 
+app.use(auth);
+
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");

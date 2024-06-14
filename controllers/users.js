@@ -7,7 +7,7 @@ const BadRequestError = require("../errors/bad-request");
 const NotFoundError = require("../errors/not-found");
 const UnauthorizedError = require("../errors/unauthorized");
 
-const { JWT_SECRET } = require("../utils/config");
+const { JWT_SECRET } = require("../middlewares/auth");
 
 const createUser = (req, res, next) => {
   const { name, avatar, email, password } = req.body;

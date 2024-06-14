@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const { NotAuthorized } = require('../errors/unauthorized');
+const { UnauthorizedError } = require('../errors/unauthorized');
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    next(new NotAuthorized('Authorization required'));
+    next(new UnauthorizedError('Authorization required'));
   }
 
   const token = authorization.replace('Bearer ', '');
@@ -20,7 +20,7 @@ const auth = (req, res, next) => {
     );
 
   } catch (err) {
-    next(new NotAuthorized('Authorization required'));
+    next(new UnauthorizedError('Authorization required'));
   }
 
   req.user = payload;

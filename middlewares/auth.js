@@ -5,7 +5,7 @@ const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    next(new UnauthorizedError('Authorization required'));
+    next(new UnauthorizedError('Unauthorized'));
   }
 
   const token = authorization.replace('Bearer ', '');
@@ -16,16 +16,16 @@ const auth = (req, res, next) => {
       token,
       process.env.NODE_ENV === 'production'
         ? process.env.JWT_SECRET
-        : 'some-secret-key',
+        : 'dev-secret',
     );
 
   } catch (err) {
-    next(new UnauthorizedError('Authorization required'));
+    next(new UnauthorizedError('Unauthorized'));
   }
 
   req.user = payload;
 
-  next();
+  return next();
 };
 
 module.exports = {

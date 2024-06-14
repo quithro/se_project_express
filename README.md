@@ -3,6 +3,12 @@ This project ties into the previous WTWR (What to Wear?) project as a functionin
 
 I've implemented several new technologies and techniques such as Express.js, REST API, Server-Side Engineering with Node.js, and a new way to handle errors.
 
+Frontend code is located at https://github.com/quithro/se_project_react; backend code is located at https://github.com/quithro/se_project_express;
+
+The live website is hosted at: https://www.quithro.strangled.net/
+
+The deployed backend server is at: https://www.api.quithro.strangled.net/
+
 ## Running the Project
 `npm run start` — to launch the server 
 

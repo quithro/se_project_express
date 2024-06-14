@@ -13,8 +13,6 @@ const errorHandler = require("./middlewares/error-handling");
 
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-const { auth } = require('./middlewares/auth');
-
 const {
   validateUserLogin,
   validateUserBody,
@@ -36,8 +34,6 @@ const routes = require("./routes/index");
 app.use(express.json());
 app.use(requestLogger);
 app.use(cors());
-
-app.use(auth);
 
 app.get("/crash-test", () => {
   setTimeout(() => {

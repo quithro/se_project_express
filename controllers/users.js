@@ -7,8 +7,6 @@ const BadRequestError = require("../errors/bad-request");
 const NotFoundError = require("../errors/not-found");
 const UnauthorizedError = require("../errors/unauthorized");
 
-const { JWT_SECRET } = require("../middlewares/auth");
-
 const createUser = (req, res, next) => {
   const { name, avatar, email, password } = req.body;
 
@@ -78,7 +76,9 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+        process.env.NODE_ENV === "production"
+        ? process.env.JWT_SECRET
+        : "dev-secret",
         {
           expiresIn: "7d",
         },

@@ -13,6 +13,8 @@ const errorHandler = require("./middlewares/error-handling");
 
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
+const { auth } = require('./middlewares/auth');
+
 const {
   validateUserLogin,
   validateUserBody,
